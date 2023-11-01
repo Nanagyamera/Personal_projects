@@ -27,7 +27,7 @@ class EventListView(ListView):
 
 # View for the landing page
 def landingpage(request):
-    return render(request, 'eventHub/index.html')
+    return render(request, 'eventHub/landingpage.html')
 
 
 # View for the about page
