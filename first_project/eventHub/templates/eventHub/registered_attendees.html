@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            h1, ul {
+                font-family: Arial;
+            }
+            ul li {
+                margin-bottom: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Registered Attendees for {{ event.title }}</h1>
+
+        <ul>
+            {% for attendee in attendees %}
+                <li>{{ attendee.user.username }}</li>
+            {% empty %}
+                <li>No attendees yet.</li>
+            {% endfor %}
+        </ul>
+    </body>
+</html>

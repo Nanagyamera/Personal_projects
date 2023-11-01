@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Event details page</title>
+        <style>
+            .thetext {
+                font-family: 'Bahnschrift Condensed';
+                font-size: 25px;
+                font-weight: bold;
+                display: inline-block;
+                margin-right: 200px;
+                color: black;
+                margin-left: 20px;
+            }
+            
+            .aboutbutton, .contactbutton, .signoutbutton, .addeventbutton, .deletebutton, .updatebutton, .registered, .registerevent {
+                color: black;
+                margin-right: 20px;
+                font-family: Arial;
+                cursor: pointer;
+                background-color: transparent;
+                border: none;
+                font-family: 'Bahnschrift Condensed';
+                font-size: 20px;
+                text-decoration: none;
+            }
+            
+            .aboutbutton:hover, .contactbutton:hover, .signoutbutton:hover, .addeventbutton:hover, .deletebutton:hover, .updatebutton:hover, .registered:hover, .registerevent:hover {
+                color: #2196F3; 
+                transform: scale(1.05);
+                font-size: 23px;
+            }
+            
+            .registerfor {
+                margin-top: 10px;
+            }
+            
+            .theheader {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+            
+            .thewelcome {
+                text-align: center;
+                font-family: 'Bahnschrift Condensed';
+                color: black;
+            }
+            
+            .firstevent {
+                color: black;
+                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+                font-family: 'Bahnschrift Condensed';
+                margin-left: 25px;
+            }
+            
+            h2 {
+                font-family: 'Bahnschrift Condensed';
+            }
+            
+            .theprofile {
+                width: 90%; 
+                height: 470px;
+                display: block;
+                margin: 0 auto;
+                border-radius: 10px;
+            }
+            
+            .theimage {
+                justify-content: space-evenly;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="theheader">
+            <p class="thetext">JaMs Event</p>
+            <div class="buttonbox">
+                <a href="{% url 'event-create'%}" class="addeventbutton">Add Event</a>
+                <a href="{% url 'eventHub-about'%}" class="aboutbutton">About</a>
+                <a href="{% url 'eventHub-contact'%}" class="contactbutton">Contact</a>
+                <a href="{% url 'eventHub-landingpage'%}" class="signoutbutton">Sign Out</a>
+            </div>
+        </div>
+        
+        <h1 class="thewelcome">Welcome to JaMs Event</h1>
+        <div class="theimage">
+            <img class="theprofile" src="{{ object.author.userprofile.image.url }}">
+        </div>
+        
+        <div class="firstevent">
+            <h3>{{ object.title }}</h3>
+            <p>Date: {{ object.date }}</p>
+            <p>Location: {{ object.location }}</p>
+            <p>Description: {{ object.description }}</p>
+            {% if user.is_authenticated and user == event.author %}
+                <a class="updatebutton" href="{% url 'event-update' event.pk %}">Update</a>
+                <a class="deletebutton" href="{% url 'event-delete' event.pk %}">Delete</a>
+                <a class="registered" href="{% url 'registered_attendees' event.id %}">View Registered Attendees</a>
+            {% endif %} 
+            <div class="registerfor">
+                {% if user.is_authenticated %}
+                    {% if user != event.organizer %}
+                        <a class="registerevent" href="{% url 'register_event' event.id %}">Register for Event</a>
+                    {% endif %}
+                {% else %}
+                    <p>Please log in to register for this event.</p>
+                {% endif %}
+            </div> 
+        </div>
+        
+    </body>
+</html>

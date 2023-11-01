@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>contact us</title>
+        <style>
+            p, h2, h3, label {
+                font-family: Arial;
+            }
+            .contact-section {
+                background-color: #f7f7f7;
+                padding: 40px;
+                border-radius: 10px;
+                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+                text-align: center;
+                margin: 20px;
+            }
+
+            .contact-section h2 {
+                font-size: 28px;
+                margin-bottom: 20px;
+                color: #333;
+            }
+
+            .contact-section p {
+                font-size: 16px;
+                margin-bottom: 30px;
+                color: #666;
+            }
+
+            /* Contact Form Styles */
+            .contact-form {
+                max-width: 500px;
+                margin: 0 auto;
+                text-align: left;
+            }
+
+            .contact-form label {
+                display: block;
+                font-weight: bold;
+                margin-bottom: 10px;
+                color: #333;
+            }
+
+            .contact-form input[type="text"],
+            .contact-form input[type="email"],
+            .contact-form textarea {
+                width: 100%;
+                padding: 10px;
+                margin-bottom: 20px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                font-size: 16px;
+                color: #333;
+            }
+
+            .contact-form textarea {
+                resize: vertical;
+            }
+
+            .contact-button {
+                background-color: #2196F3;
+                color: #fff;
+                border: none;
+                padding: 10px 20px;
+                font-size: 18px;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: background-color 0.7s;
+            }
+
+            .contact-button:hover {
+                background-color: #0e7be9;
+            }
+
+            .contact-info {
+                max-width: 300px;
+                margin: 0 auto;
+            }
+
+            .contact-info h3 {
+                font-size: 20px;
+                margin-bottom: 15px;
+                color: #333;
+            }
+
+            .contact-info p {
+                font-size: 16px;
+                margin-bottom: 10px;
+                color: #666;
+            }
+        
+            .phoneinfo {
+                display: inline-block;
+                text-align: center;
+                
+
+            }
+            .emailinfo {
+                display: inline-block;
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="contact-section">
+            <h2>Contact Us</h2>
+            <p>We'd love to hear from you. Feel free to get in touch with us.</p>
+            
+            <form class="contact-form" action="{% url 'eventHub-contact' %}" method="post">
+                {% csrf_token %}
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+                
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="4" required></textarea>
+                
+                <button type="submit" class="contact-button">Send Message</button>
+            </form>
+            
+            <div class="contact-info">
+                <h3>Contact Information</h3>
+                    <div class="phoneinfo">
+                        <p><strong>Phone:</strong></p>
+                        <div>+233 592774389</div>
+                    </div>
+                    <div>
+                        <p><strong>Whatsapp:</strong></p>
+                        <div>+233 501425986</div> 
+                    </div>
+                    <div class="emailinfo">
+                        <p><strong>Email:</strong></p>
+                        <div>nanagyamera3@gmail.com</div>
+                    </div>
+            </div>
+        </div>  
+    </body>
+</html>

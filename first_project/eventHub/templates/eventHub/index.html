@@ -1,0 +1,129 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>landing page</title>
+        <style>
+            body {
+                background-image: url("{% static 'eventHub/images/event large.jpg' %}");
+                margin: 0;
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-attachment: fixed;
+                
+            }
+            
+            body::before {
+                content: "";
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.3);
+                z-index: -1
+            }
+            
+            .theeventhub, .homebutton, .aboutbutton, .contactbutton, .herosection, .herosection1, .startbutton, .signinbutton {
+                color: #ffffff; 
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            }   
+            
+            .theeventhub {
+                font-family: 'Bahnschrift Condensed';
+                font-size: 25px;
+                font-weight: bold;
+                display: inline-block;
+                margin-right: 200px;
+                color: whitesmoke;
+                margin-left: 20px;
+            }
+            
+            .homebutton, .aboutbutton, .contactbutton, .signinbutton {
+                color: white;
+                margin-right: 20px;
+                font-family: Arial;
+                cursor: pointer;
+                background-color: transparent;
+                border: none;
+                font-family: 'Bahnschrift Condensed';
+                font-size: 20px;
+                text-decoration: none;
+                
+            }
+            
+            .homebutton:hover, .aboutbutton:hover, .contactbutton:hover, .signinbutton:hover { 
+                color: #2196F3; 
+                transform: scale(1.05);
+                font-size: 25px;
+            }
+               
+            .header {
+                display: flex;
+                position: relative;
+                align-items: center;
+                margin-bottom: 90px;
+                justify-content: space-between;
+            }
+            
+            .herosection {
+                font-family: 'Bahnschrift Condensed';
+                font-size: 60px;
+                color: white;
+                margin-bottom: 0;
+                
+            }
+            
+            .herosection1 {
+                font-family: Arial;
+                font-size: 14px;
+                color: white;
+                margin-bottom: 20px;
+                margin-top: 0;
+                font-weight: 700;
+            }
+            
+            .startbutton {
+                color: white;
+                background-color: #2196F3;
+                padding: 10px 40px;
+                cursor: pointer;
+                border: none;
+                border-radius: 5px;
+                text-decoration: none;
+            }
+            
+            .startbutton:hover{
+                color: black; 
+                transform: scale(1.05);
+                   
+            }
+            
+            .secondbox {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                margin-top: 50px;
+                
+            }
+        </style>
+    </head>
+    <body>
+        <div class="header">
+            <p class="theeventhub">JaMs Event</p>
+            <div class="buttonbox">
+                <a href="{% url 'eventHub-home' %}" class="homebutton">Home</a>
+                <a href="{% url 'eventHub-about' %}" class="aboutbutton">About</a>
+                <a href="{% url 'eventHub-contact'%}" class="contactbutton">Contact</a>
+                <a href="{% url 'eventHub-signin'%}" class="signinbutton">Sign In</a>
+            </div>
+        </div>
+            <div class="secondbox">
+                <p class="herosection">Revolutionize<br>Event Planning<br>with Event Hub</p>
+                <p class="herosection1">Your All-in-One Solution</p>
+                <a href="{% url 'eventHub-signup' %}" class="startbutton">Get Started</a>
+            </div>
+    </body>
+</html> 

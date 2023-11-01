@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            h2, p {
+                font-family: 'Bahnschrift Condensed';
+            }
+        </style>
+    </head>
+    <body>
+        <h2>Search Results</h2>
+        <ul>
+            {% for event1 in results %}
+                <li>
+                    <a href="{% url 'event-detail' event1.pk %}">{{ event1.title }}</a>
+                    <p>{{ event1.description }}</p>
+                </li>
+            {% empty %}
+                <li>No results found.</li>
+            {% endfor %}
+        </ul>
+    </body>
+</html>

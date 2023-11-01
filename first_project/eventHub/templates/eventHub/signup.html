@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>sign up page</title>
+        <style>
+
+            h1, h2 {
+                font-family: Arial;  
+            }
+
+            .theconfirmation {
+                font-family: Arial;
+                font-size: 14px;
+                display: inline-block;
+            }
+
+            .signinbutton {
+                color: #2196F3;
+                border: none;
+                background-color: transparent;
+                cursor: pointer;
+                text-decoration: none;
+                margin: 12px;
+            }
+
+            .confirmationbox {
+                display: flex;
+            }
+
+            .theEmail, .theusername {
+                display: block;
+                font-family: Arial;
+                font-size: 14px;
+                padding:10px;
+                margin-bottom: 12px;
+                padding-left: 5px;
+                padding-right: 8px;
+                width: 192px;
+                border-radius: 5px;
+                border: 1px solid #ccc;
+            }
+
+            .thepassword {
+                display: inline-block;
+                font-family: Arial;
+                font-size: 14px;
+                padding: 10px;
+                padding-left: 5px;
+                padding-right: 30px;
+                border-radius: 5px;
+                border: 1px solid #ccc;
+            }
+            
+            .showbutton {
+                font-size: 12px;
+                color: #2196F3;
+                padding: 11px 5px;
+                position: absolute;
+                top: 0px;
+                right: 0;
+                bottom: 2px;
+                border: none;
+                background-color: transparent;
+                cursor: pointer;
+            }
+
+            .signupbutton {
+                padding: 10px 80px;
+                cursor: pointer;
+                background-color: #2196F3;
+                border: none;
+                border-radius: 5px;
+                transition: color 0.75s;
+            }
+
+            .signupbutton:hover {
+                color: white;
+            }
+
+            .theplaceholder, .theplaceholder1 {
+                display: block;
+                position: relative;
+                margin-bottom: 12px;
+                align-items: center;     
+            }
+            
+            .all {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                margin: 20px;
+                height: 100vh;  
+                background-color: #f7f7f7;
+                border-radius: 10px;
+                padding: 40px;
+                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            }
+
+            .theform {
+                align-items: center;
+                text-align: center;
+                justify-content: center;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div class="all">
+            <!-- Messages Block -->
+            {% if messages %}
+                <div class="messages">
+                    <ul class="messages">
+                        {% for message in messages %}
+                            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+            <!-- End of Messages Block -->
+            <h1>Event Hub</h1>
+            <h2>Sign Up</h2>
+            <div class="confirmationbox">
+                <p class="theconfirmation">Already have an account?</p>
+                <a href="{% url 'eventHub-signin' %}" class="signinbutton">Sign In</a>
+            </div>
+
+            <!-- Registration Form -->
+            <form class="theform" method="post">
+                {% csrf_token %}
+                
+                <!-- Username Field -->
+                <input class="theusername" placeholder="Username" name="username" required>
+
+                <!-- Email Field -->
+                <input type="email" name="email" placeholder="Email or phone number" class="theEmail" required>
+
+                <!-- Password Field -->
+                <div class="theplaceholder">
+                    <input type="password" name="password1" placeholder="Password" class="thepassword js-password" required>
+                    <button type="button" onclick="checkpass();" class="showbutton js-showbutton">Show</button>
+                </div>
+
+                <!-- Password Confirmation Field -->
+                <div class="theplaceholder1">
+                    <input type="password" name="password2" placeholder="Confirm Password" class="thepassword js-password1" required>
+                    <button type="button" onclick="checkpass1();" class="showbutton js-showbutton1">Show</button>
+                </div>
+                <button type="submit" class="signupbutton">Sign Up</button>      
+            </form>
+        </div>
+        <script>
+            function checkpass() {
+                const pass = document.querySelector('.js-password');
+                if (pass.type === 'password') {
+                    pass.type = 'text';
+                    document.querySelector('.js-showbutton').innerHTML = 'Hide';
+                }
+                else {
+                    pass.type = 'password';
+                    document.querySelector('.js-showbutton').innerHTML = 'Show';
+                }
+            };
+            function checkpass1() {
+                const pass1 = document.querySelector('.js-password1');
+                if (pass1.type === 'password') {
+                    pass1.type = 'text';
+                    document.querySelector('.js-showbutton1').innerHTML = 'Hide';
+                }
+                else {
+                    pass1.type = 'password';
+                    document.querySelector('.js-showbutton1').innerHTML = 'Show';
+                }
+            }
+        </script>   
+    </body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>User Profile</title>
+    <style>
+      p, h2 {
+        font-family: 'Bahnschrift Condensed';
+      }
+      
+      .signoutbutton, .homebutton {
+        margin-right: 20px;
+        font-family: Arial;
+        cursor: pointer;
+        background-color: transparent;
+        border: none;
+        font-family: 'Bahnschrift Condensed';
+        font-size: 20px;
+        text-decoration: none;
+      }
+      
+      .signoutbutton:hover, .homebutton:hover {
+        color: #2196F3; 
+        transform: scale(1.05);
+        font-size: 25px;
+      }
+      
+      .theprofile {
+          width: 70px;
+          border-radius: 50%;
+      }
+      
+      .useremail {
+        display: inline-block;
+        margin-left: 10px;
+      }
+      
+      .user-profile {
+          max-width: 400px;
+          margin: 0 auto;
+          padding: 20px;
+      }
+
+      .user-profile-form {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .form-field {
+        margin-bottom: 10px;
+      }
+ 
+      input[type="text"],
+      input[type="email"],
+      input[type="file"] {
+        width: 100%;
+        padding: 8px;
+        margin: 5px 0;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        font-family: 'Bahnschrift Condensed';
+        font-size: 15px;
+      }
+
+      label {
+        font-weight: bold;
+        font-family: 'Bahnschrift Condensed';
+      }
+
+      .update-button {
+        background-color: #2196F3;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        margin-top: 10px;
+        cursor: pointer;
+        transition: background-color, 0.75s;
+      }
+      .theheader {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      
+      .thetext {
+        font-family: 'Bahnschrift Condensed';
+        font-size: 25px;
+        font-weight: bold;
+        display: inline-block;
+        margin-right: 200px;
+        margin-left: 20px;
+      }
+      
+      .update-button:hover {
+        opacity: 0.8
+      }
+      
+      .profile {
+        display: flex;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="theheader">
+      <p class="thetext">EventHub</p>
+      <div class="buttonbox">
+        <a href="{% url 'eventHub-home' %}" class="homebutton">Home</a>
+        <a href="{% url 'eventHub-signout'%}" class="signoutbutton">Sign Out</a>
+      </div>
+    </div>
+    <div class="user-profile">
+      <div class="profile">
+        <img class="theprofile" src="{{ user.userprofile.image.url }}">
+        <div class="useremail">
+            <h2>{{ user.username }}</h2>
+            <p>{{ user.email }}</p>
+        </div>
+      </div>
+      <h2>My Profile</h2>
+      <form method="post" enctype="multipart/form-data" class="user-profile-form">
+        {% csrf_token %}
+        <div class="form-field">
+          {{ u_form.username.label_tag }}
+          {{ u_form.username }}
+        </div>
+        <div class="form-field">
+          {{ u_form.email.label_tag }}
+          {{ u_form.email }}
+        </div>
+        <div class="form-field">
+          {{ p_form.image.label_tag }}
+          {{ p_form.image }}
+        </div>
+        <button type="submit" class="update-button">Update</button>
+      </form>
+    </div>
+  </body>
+</html>

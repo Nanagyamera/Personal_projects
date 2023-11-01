@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            h2 {
+                font-family: 'Bahnschrift Condensed';
+            }
+
+            .deletebutton, .cancelbutton {
+                color: black;
+                margin-right: 20px;
+                font-family: Arial;
+                cursor: pointer;
+                background-color: transparent;
+                border: none;
+                font-family: 'Bahnschrift Condensed';
+                font-size: 20px;
+                text-decoration: none;
+            }
+
+            .deletebutton:hover, .cancelbutton:hover {
+                color: #2196F3; 
+                transform: scale(1.05);
+                font-size: 25px;
+            }
+        </style>
+    </head>
+    <body>
+        <h2>Are you sure you want to delete the event "{{object.title}}"</h2>
+        <form method="post">
+            {% csrf_token %}
+            <button class="deletebutton" type="submit">Yes, Delete</button>
+            <a class="cancelbutton" href="{% url 'event-detail' object.id %}">Cancel</a>
+        </form>
+    </body>
+</html>

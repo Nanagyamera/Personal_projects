@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>sign in page</title>
+        <style>
+            .signintext, .theeventhub {
+                font-family: Arial;
+                font-weight: bold;
+                font-size: 18px;
+                margin-left: 20px;
+            }
+
+            .theusername {
+                font-family:Arial;
+                font-size: 14px;
+                padding: 12px 40px;
+                display: block;
+                margin-bottom: 20px;
+                padding-left: 5px;
+                padding-right: 5px;
+                width: 235px;
+                border-radius: 5px;
+                border: 1px solid #ccc;
+            }
+
+            .forgottext {
+                font-family: Arial;
+                font-size: 14px;
+                color: black;
+                display: block;
+                margin-bottom: 10px;
+            }
+
+            .forgottext:hover {
+                color: #2196F3;
+            }
+
+            .signinbutton, .signupbutton {
+                padding: 12px 100px;
+                background-color: #2196F3;
+                border-color: #2196F3;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: background-color 0.75s;
+                text-decoration: none;
+                color: black;
+                font-family: Arial;
+                font-size: 14px;
+                border: none;
+            }
+
+            .signupbutton {
+                padding: 12px 98px;
+            }
+
+            .signinbutton:hover, .signupbutton:hover {
+                opacity: 0.8;
+            }
+
+            .everything {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                height: 100vh;
+                text-align: center;
+                background-color: #f7f7f7;
+                border-radius: 10px;
+                margin: 30px;
+                padding: 40px;
+                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            }
+
+            .thepassword {
+                font-family:Arial;
+                font-size: 14px;
+                padding: 12px;
+                margin-bottom: 20px;
+                padding-left: 5px;
+                padding-right: 70px;
+                border-radius: 5px;
+                border: 1px solid #ccc;
+            }
+            .theshow {
+                padding-top: 16px;
+                color: #2196F3;
+                margin-right: 14px;
+                border: none;
+                background-color: transparent;
+                position: absolute;
+                top: 0;
+                right: 0;
+                font-size: 12px;
+                cursor: pointer; 
+            }
+
+            .passwordShow {
+                display:flex;
+                position: relative;           
+            }
+
+            .themessage {
+                color: red;
+                font-family: 'Bahnschrift Condensed';
+            }
+            
+        </style>
+    </head>
+    <body>
+        <div class="everything">
+            {% if messages %}
+                <div class="alert alert-danger">
+                    {% for message in messages %}
+                    <p class="themessage">{{ message }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+            <p class="theeventhub">Event Hub</p>
+            <p class="signintext">Sign In</p>
+            
+            <form class="theform" method="post">
+                {% csrf_token %}
+                <input type="username" class="theusername" name="username" placeholder="Email or phone number" required>
+                <div class="passwordShow">
+                    <input type="password" class="thepassword js-password" name="password" placeholder="Password">
+                    <button onclick="togglePassword();" class="theshow js-showbutton">Show</button>
+                </div>
+                <a href="{% url 'password_reset' %}" class="forgottext">Forgot your password?</a>
+                <button type="submit" class="signinbutton">Sign In</button>
+                <p class="notsigned">Don't have an account?</p>
+                <a href="{% url 'eventHub-signup' %}" class="signupbutton">Sign Up</a>
+            </form>
+        </div>        
+        
+        <script>
+            function togglePassword() {
+                const pass1 = document.querySelector('.js-password');
+                if (pass1.type === 'password') {
+                    pass1.type = 'text';
+                    document.querySelector('.js-showbutton').innerHTML = 'Hide'
+                }
+                else {
+                    pass1.type = 'password'
+                    document.querySelector('.js-showbutton').innerHTML = 'Show'
+                }
+            } 
+        </script>
+    </body>
+</html>
