@@ -4,22 +4,27 @@
         <title>Event form</title>
         <style>
             h1 {
-                font-family: Arial;
-                display: block;
+                font-family: 'Bahnschrift Condensed';
+                text-align: center;
             }
 
-            .thetitle, .thedate, .thelocation, .thetext, .thetime {
+            .eventform {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .thetitle, .thelocation, .thetext {
                 padding: 10px;
-                display: block;
-                margin-bottom: 10px;
-                width: 400px;
+                margin: 10px 0;
+                width: 100%;
+                box-sizing: border-box;
             }
 
             .thetitle::placeholder, .thelocation::placeholder, textarea {
                 font-size: 16px;
             }
 
-            .thebutton {
+            button {
                 padding: 10px 25px;
                 background-color: #2196F3;
                 border-color: #2196F3;
@@ -28,31 +33,27 @@
                 cursor: pointer;
             }
 
-            .thebutton:hover {
+            button:hover {
                 opacity: 0.8;
             }
 
             .all {
-                margin: 40px;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                height: 100vh;
+                margin: 0 auto; 
                 padding: 20px;
                 box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-                background-color: #f7f7f7;
+                max-width: 400px;
             }
         </style>
     </head>
     <body>
         <div class="all">
             <h1>Add Your Event</h1>
-            <form method="POST">
+            <form method="POST" class="eventform">
                 {% csrf_token %}
                 <input class="thetitle" name="title" placeholder="Title" required value="{{ object.title }}">
                 <input class="thelocation" name="location" placeholder="Location" required value="{{ object.location }}">
                 <textarea class="thetext" rows="5" name="description" required>{{ object.description }}</textarea>
-                <button class="thebutton" type="submit">POST</button>
+                <button type="submit">POST</button>
             </form>
         </div>
     </body>

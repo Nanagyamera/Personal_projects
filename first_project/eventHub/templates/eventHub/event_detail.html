@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Event details page</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <style>
             .thetext {
                 font-family: 'Bahnschrift Condensed';
@@ -13,7 +16,7 @@
                 margin-left: 20px;
             }
             
-            .aboutbutton, .contactbutton, .signoutbutton, .addeventbutton, .deletebutton, .updatebutton, .registered, .registerevent {
+            .navbar a, .firstevent a, .registerevent {
                 color: black;
                 margin-right: 20px;
                 font-family: Arial;
@@ -25,7 +28,7 @@
                 text-decoration: none;
             }
             
-            .aboutbutton:hover, .contactbutton:hover, .signoutbutton:hover, .addeventbutton:hover, .deletebutton:hover, .updatebutton:hover, .registered:hover, .registerevent:hover {
+            .navbar a:hover, .firstevent a:hover, .registerevent:hover {
                 color: #2196F3; 
                 transform: scale(1.05);
                 font-size: 23px;
@@ -41,7 +44,7 @@
                 align-items: center;
             }
             
-            .thewelcome {
+            h1 {
                 text-align: center;
                 font-family: 'Bahnschrift Condensed';
                 color: black;
@@ -49,9 +52,15 @@
             
             .firstevent {
                 color: black;
-                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
                 font-family: 'Bahnschrift Condensed';
-                margin-left: 25px;
+                width: 100%;
+            }
+
+            .innerevent {
+                margin: 20px;
+                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+                padding: 20px;
+                box-sizing: border-box;
             }
             
             h2 {
@@ -59,54 +68,145 @@
             }
             
             .theprofile {
-                width: 90%; 
+                width: 100%; 
                 height: 470px;
-                display: block;
                 margin: 0 auto;
                 border-radius: 10px;
             }
-            
-            .theimage {
-                justify-content: space-evenly;
+
+            .menu-icon {
+                display: none;
+                cursor: pointer;
+                color: #2196F3;
             }
+
+            @media (max-width: 500px) {
+                .thetext {
+                    font-size: 18px;
+                    margin-left: 8px;
+                }
+                .navbar {
+                    display: none;
+                    position: absolute;
+                    top: 60px;
+                    left: 0;
+                    width: 100%;
+                    background-color: #2196F3;
+                    text-align: center;
+                }
+                .navbar a {
+                    display: block;
+                }
+                .navbar a:hover {
+                    color: black;
+                    font-size: 20px;
+                }                
+                .navbar.responsive {
+                    display: block;
+                }
+                .menu-icon {
+                    display: block;
+                    margin-left: auto;
+                    margin-right: 10px;                  
+                }
+                .theprofile {
+                    height: 300px;
+                }
+                .innerevent {
+                    margin: 10px;
+                    padding: 10px;
+                }
+            }
+
+            @media (500px <= width <= 730px) {
+                .thetext {
+                    font-size: 20px;
+                    margin-left: 8px;
+                }
+                .navbar {
+                    display: none;
+                    position: absolute;
+                    top: 60px;
+                    left: 0;
+                    width: 100%;
+                    background-color: #2196F3;
+                    text-align: center;
+                }
+                .navbar a {
+                    display: block;
+                }
+                .navbar a:hover {
+                    color: black;
+                    font-size: 20px;
+                }                
+                .navbar.responsive {
+                    display: block;
+                }
+                .menu-icon {
+                    display: block;
+                    margin-left: auto;
+                    margin-right: 10px;                  
+                }
+                .theprofile {
+                    height: 370px;
+                }
+                .innerevent {
+                    margin: 10px;
+                    padding: 10px;
+                }
+            }
+            
         </style>
     </head>
     <body>
         <div class="theheader">
             <p class="thetext">JaMs Event</p>
-            <div class="buttonbox">
-                <a href="{% url 'event-create'%}" class="addeventbutton">Add Event</a>
-                <a href="{% url 'eventHub-about'%}" class="aboutbutton">About</a>
-                <a href="{% url 'eventHub-contact'%}" class="contactbutton">Contact</a>
-                <a href="{% url 'eventHub-landingpage'%}" class="signoutbutton">Sign Out</a>
+            <div class="navbar" id="navigation-bar">
+                <a href="{% url 'event-create' %}">Add Event</a>
+                <a href="{% url 'eventHub-about' %}">About</a>
+                <a href="{% url 'eventHub-contact' %}">Contact</a>
+                <a href="{% url 'eventHub-signout' %}">Sign Out</a>
+            </div>
+            <a id="menu-icon" class="menu-icon" onclick="toggleMenu()">
+                <i class="fa fa-bars"></i>
+            </a>
+        </div>
+        
+        <h1>Welcome to JaMs Event</h1>
+        <div class="innerevent">
+            <div class="theimage">
+                <img class="theprofile" src="{{ object.author.userprofile.image.url }}">
+            </div>
+            
+            <div class="firstevent">
+                <h3>{{ object.title }}</h3>
+                <p>Location: {{ object.location }}</p>
+                <p>Description: {{ object.description }}</p>
+                {% if user.is_authenticated and user == event.author %}
+                    <a href="{% url 'event-update' event.pk %}">Update</a>
+                    <a href="{% url 'event-delete' event.pk %}">Delete</a>
+                    <a href="{% url 'registered_attendees' event.id %}">View Registered Attendees</a>
+                {% endif %} 
+                
+                <div class="registerfor">
+                    {% if user.is_authenticated %}
+                        {% if user != event.organizer %}
+                            <a class="registerevent" href="{% url 'register_event' event.id %}">Register for Event</a>
+                        {% endif %}
+                    {% else %}
+                        <p>Please log in to register for this event.</p>
+                    {% endif %}
+                </div> 
             </div>
         </div>
         
-        <h1 class="thewelcome">Welcome to JaMs Event</h1>
-        <div class="theimage">
-            <img class="theprofile" src="{{ object.author.userprofile.image.url }}">
-        </div>
-        
-        <div class="firstevent">
-            <h3>{{ object.title }}</h3>
-            <p>Date: {{ object.date }}</p>
-            <p>Location: {{ object.location }}</p>
-            <p>Description: {{ object.description }}</p>
-            {% if user.is_authenticated and user == event.author %}
-                <a class="updatebutton" href="{% url 'event-update' event.pk %}">Update</a>
-                <a class="deletebutton" href="{% url 'event-delete' event.pk %}">Delete</a>
-                <a class="registered" href="{% url 'registered_attendees' event.id %}">View Registered Attendees</a>
-            {% endif %} 
-            <div class="registerfor">
-                {% if user.is_authenticated %}
-                    {% if user != event.organizer %}
-                        <a class="registerevent" href="{% url 'register_event' event.id %}">Register for Event</a>
-                    {% endif %}
-                {% else %}
-                    <p>Please log in to register for this event.</p>
-                {% endif %}
-            </div> 
-        </div>
-        
+        <script>
+            function toggleMenu() {
+             var navigation = document.getElementById("navigation-bar");
+             var responsive_class_name = "responsive";
+ 
+             navigation.classList.toggle(responsive_class_name);
+            }
+         </script>
     </body>
 </html>

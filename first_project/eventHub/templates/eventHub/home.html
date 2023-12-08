@@ -2,6 +2,8 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Home page</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <style>
@@ -9,137 +11,21 @@
                 font-family: 'Bahnschrift Condensed';
                 font-size: 25px;
                 font-weight: bold;
-                display: inline-block;
                 margin-right: auto;
-                color: black;
-                margin-left: 20px;
+                margin-left: 15px;
             }
-            
-            .buttonbox {
-                display: flex;
-                align-items: center; /* Add this to vertically align buttons with the search input */
-                margin-left: auto;             
-            }
-            
-            .aboutbutton, .contactbutton, .signoutbutton, .addeventbutton, .deletebutton, .updatebutton, .theprofile1 {
-                color: black;
-                margin-right: 20px;
-                font-family: Arial;
-                cursor: pointer;
-                background-color: transparent;
-                border: none;
-                font-family: 'Bahnschrift Condensed';
-                font-size: 20px;
-                text-decoration: none;
-            }
-            
-            .aboutbutton:hover, .contactbutton:hover, .signoutbutton:hover, .addeventbutton:hover, .deletebutton:hover, .updatebutton:hover, .theprofile1:hover {
-                color: #2196F3; 
-                transform: scale(1.05);
-                font-size: 23px;
-            }
-            
-            .theheader {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-            }
-            
-            .thewelcome {
-                text-align: center;
-                font-family: 'Bahnschrift Condensed';
-                color: black;
-            }
-            
-            .firstevent {
-                color: black;
-                font-family: 'Bahnschrift Condensed';
-                margin-left: 5px;
-                display: grid;
-                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Adjust minmax and width as needed */
-                gap: 20px;
-            }
-            
-            h2 {
-                font-family: Bahnschrift Condensed;
-            }
-            
-            .innerevent {
-                margin-left: 0;
-                display: inline-block;
-                color: black;
-                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            }
-            
-            .thetitle {
-                text-decoration: none;
-                color: black;
-            }
-            
-            .thetitle:hover {
-                color: #2196F3;
-            }
-            
-            .firstbutton, .prevbutton, .numbutton, .nextbutton, .lastbutton {
-                background-color: white;
-                color: #2196F3;
-                text-decoration: none;
-                padding: 5px 10px;
-                border-radius: 3px;
-            }
-            
-            .firstbutton:hover, .prevbutton:hover, .numbutton:hover, .nextbutton:hover, .lastbutton:hover {
-                color: white;
-                background-color: #2196F3;
-            }
-            
-            .current {
-                color: white;
-                background-color: #2196F3;
-                text-decoration: none;
-                padding: 5px 10px;
-                border-radius: 3px;
-            }
-            
-            .thedate {
-                font-size: 14px;
-                margin-left: 6px;
-            }
-            
-            .theauthor {
-                color: #2196F3;
-            }
-            
-            .thepagination {
-                position: absolute;
-                right: 10px;
-            }
-            
-            .theprofile {
-                width: 310px;
-                height: 200px;
-                border-radius: 5px;        
-            }
-            
-            .theimage {
-                display:inline-block;
-            }
-            
-            .thesearch {
+
+            .search-form {
                 flex: 1;
-                border: none;
-                padding: 10px;
-                border-radius: 50px 0 0 50px;
-                outline: none;            
+                max-width: 500px;
             }
-            
+
             .search-container {
                 display: flex;
                 align-items: center;
-                width: 300px;
-                max-width: 300px;
                 border-radius: 50px;
                 border: 1px solid #ccc;
+                flex: 1;
             }
             
             .search-button {
@@ -151,10 +37,289 @@
                 background-color: white;
                 color: #2196F3;
             }
+
+            .navbar {
+                display: flex;
+                align-items: center;
+                margin-left: auto;             
+            } 
             
-            .thedetails {
-                margin: 10px;
+            .navbar a {
+                color: black;
+                margin-right: 20px;
+                font-family: Arial;
+                cursor: pointer;
+                background-color: transparent;
+                border: none;
+                font-family: 'Bahnschrift Condensed';
+                font-size: 20px;
+                text-decoration: none;
             }
+            
+            .navbar a:hover {
+                color: #2196F3; 
+                transform: scale(1.05);
+                font-size: 22px;
+            }
+
+            .menu-icon {
+                display: none;
+                cursor: pointer;
+                color: #2196F3;
+            }
+            
+            .theheader {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            @media (max-width: 500px) {
+                .thetext {
+                    font-size: 18px;
+                    margin-left: 8px;
+                }
+                .search-container {
+                    width: 150px;
+                    margin: auto
+                }
+                .navbar {
+                    display: none;
+                    position: absolute;
+                    top: 60px;
+                    left: 0;
+                    width: 100%;
+                    backdrop-filter: blur(10px);
+                    background-color: rgba(255, 255, 255, 0.5);
+                    text-align: center;
+                }
+                .navbar a {
+                    display: block;
+                }
+                .navbar a:hover {
+                    color: black;
+                    font-size: 20px;
+                }                
+                .navbar.responsive {
+                    display: block;
+                }
+                .menu-icon {
+                    display: block;
+                    margin-left: auto;
+                    margin-right: 10px;                  
+                }
+
+            }
+
+            @media (500px <= width <= 640px) {
+                .theimage {
+                    margin: 10px 20px;
+                }
+                .thedetails {
+                    padding: 10px 20px;
+                }
+                .thetext {
+                    font-size: 20px;
+                    margin-left: 8px;
+                }
+                .search-container {
+                    width: 200px;
+                    margin: auto
+                }
+                .navbar {
+                    display: none;
+                    position: absolute;
+                    top: 60px;
+                    left: 0;
+                    width: 100%;
+                    backdrop-filter: blur(10px);
+                    background-color: rgba(255, 255, 255, 0.5);
+                    text-align: center;
+                }
+                .navbar a {
+                    display: block;
+                }
+                .navbar a:hover {
+                    color: black;
+                    font-size: 20px;
+                }                
+                .navbar.responsive {
+                    display: block;
+                }
+                .menu-icon {
+                    display: block;
+                    margin-left: auto;
+                    margin-right: 15px;                   
+                }
+            }
+
+
+            @media (640px <= width <= 800px) {
+                .thetext {
+                    font-size: 20px;
+                    margin-left: 8px;
+                }
+                .search-container {
+                    width: 200px;
+                    margin: auto
+                }
+                .navbar {
+                    display: none;
+                    position: absolute;
+                    top: 60px;
+                    left: 0;
+                    width: 100%;
+                    backdrop-filter: blur(10px);
+                    background-color: rgba(255, 255, 255, 0.5);
+                    text-align: center;
+                }
+                .navbar a {
+                    display: block;
+                }
+                .navbar a:hover {
+                    color: black;
+                    font-size: 20px;
+                }                
+                .navbar.responsive {
+                    display: block;
+                }
+                .menu-icon {
+                    display: block;
+                    margin-left: auto;
+                    margin-right: 15px;                   
+                }
+
+            } 
+
+
+            @media (800px <= width <= 1000px) {
+                .search-container {
+                    width: 350px;
+                    margin: auto
+                }
+                .thetext {
+                    font-size: 20px;
+                    margin-left: 8px;
+                }
+                .navbar {
+                    display: none;
+                    position: absolute;
+                    top: 60px;
+                    left: 0;
+                    width: 100%;                 
+                    backdrop-filter: blur(10px);
+                    background-color: rgba(255, 255, 255, 0.5);
+                    text-align: center;
+                }
+                .navbar a {
+                    display: block;
+                }
+                .navbar a:hover {
+                    color: black;
+                    font-size: 20px;
+                }                
+                .navbar.responsive {
+                    display: block;
+                }
+                .menu-icon {
+                    display: block;
+                    margin-left: auto;
+                    margin-right: 20px;
+                }            
+
+            }
+            
+            .thewelcome {
+                text-align: center;
+                font-family: 'Bahnschrift Condensed';
+            }
+
+            h2 {
+                font-family: Bahnschrift Condensed;
+                margin-left: 15px;
+            }
+
+            .firstevent {
+                font-family: 'Bahnschrift Condensed';
+                margin-left: 5px;
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Adjust minmax and width as needed */
+                gap: 20px;
+            }            
+            
+            .innerevent {
+                margin: 0;
+                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+                padding: 10px;
+                box-sizing: border-box;
+            }
+
+            .theprofile {
+                width: 100%;
+                height: 200px;
+                border-radius: 5px;
+                box-sizing: border-box;       
+            }
+
+            .theauthor {
+                color: #2196F3;
+            }
+
+            .thedate {
+                font-size: 14px;
+                margin-left: 6px;
+            }
+
+            .thetitle {
+                text-decoration: none;
+                color: black;
+            }
+            
+            .thetitle:hover {
+                color: #2196F3;
+            }
+
+            .thedetails {
+                margin: 10px 0;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            
+            .thepagination a {
+                background-color: white;
+                color: #2196F3;
+                text-decoration: none;
+                padding: 5px 10px;
+                border-radius: 3px;
+            }
+            
+            .thepagination a:hover {
+                color: white;
+                background-color: #2196F3;
+            }
+            
+            .thepagination a.current {
+                color: white;
+                background-color: #2196F3;
+                text-decoration: none;
+                padding: 5px 10px;
+                border-radius: 3px;
+            }
+                      
+            .thepagination {
+                position: absolute;
+                right: 10px;
+            }           
+            
+            .thesearch {
+                flex: 1;
+                border: none;
+                padding: 10px;
+                border-radius: 50px 0 0 50px;
+                outline: none;
+                width: 0px;       
+            }
+            
         </style>
     </head>
     <body>
@@ -165,17 +330,20 @@
                     <input class="thesearch" type="search" name="q" placeholder="Search events">
                     <button class="search-button" type="submit">
                       <i class="fa fa-search"></i>
-                  </button>
+                    </button>
                 </div>
             </form>
-            <div class="buttonbox">
+            <div class="navbar" id="navigation-bar">
                 {% if user.is_authenticated %}
-                    <a href="{% url 'event-create'%}" class="addeventbutton">Add Event</a>
-                    <a href="{% url 'profile' %}" class="theprofile1">Profile</a>
+                    <a href="{% url 'event-create'%}">Add Event</a>
+                    <a href="{% url 'profile' %}">Profile</a>
                 {% endif %} 
-                <a href="{% url 'eventHub-contact'%}" class="contactbutton">Contact</a>
-                <a href="{% url 'eventHub-signout'%}" class="signoutbutton">Sign Out</a>
+                <a href="{% url 'eventHub-contact'%}">Contact</a>
+                <a href="{% url 'eventHub-signout'%}">Sign Out</a>
             </div>
+            <a id="menu-icon" class="menu-icon" onclick="toggleMenu()">
+                <i class="fa fa-bars"></i>
+            </a>
         </div>
         <h1 class="thewelcome">Welcome to JaMs Event</h1>
         <h2>Upcoming Events</h2>
@@ -203,24 +371,32 @@
         <div class="thepagination">
             {% if is_paginated %}
                 {% if page_obj.has_previous %}
-                    <a class="firstbutton" href="?page=1">First</a>
-                    <a class="prevbutton" href="?page={{page_obj.previous_page_number}}">Previous</a>
+                    <a href="?page=1">First</a>
+                    <a href="?page={{page_obj.previous_page_number}}">Previous</a>
                 {% endif %}
 
                 {% for num in page_obj.paginator.page_range %}
                     {% if page_obj.number == num %}
                         <a class="current" href="?page={{ num }}">{{ num }}</a>
                     {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
-                        <a class="numbutton" href="?page={{ num }}">{{ num }}</a>
+                        <a href="?page={{ num }}">{{ num }}</a>
                     {% endif %}
                 {% endfor %}
 
                 {% if page_obj.has_next %}
-                    <a class="nextbutton" href="?page={{ page_obj.next_page_number }}">Next</a>
-                    <a class="lastbutton" href="?page={{page_obj.paginator.num_pages }}">Last</a>
+                    <a href="?page={{ page_obj.next_page_number }}">Next</a>
+                    <a href="?page={{page_obj.paginator.num_pages }}">Last</a>
                 {% endif %}
 
             {% endif %}
         </div>
+        <script>
+           function toggleMenu() {
+            var navigation = document.getElementById("navigation-bar");
+            var responsive_class_name = "responsive";
+
+            navigation.classList.toggle(responsive_class_name);
+           }
+        </script> 
     </body>
 </html>

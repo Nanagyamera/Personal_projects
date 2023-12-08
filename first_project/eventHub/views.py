@@ -52,7 +52,6 @@ def contact(request):
             return redirect('success-page')
     else:
         form = ContactForm()
-
     return render(request, 'eventHub/contact.html', {'form': form})
 
 
@@ -66,8 +65,8 @@ def signIn(request):
     if request.method == 'POST':
         form = SignInForm(request.POST)
         if form.is_valid():
-            username = request.POST['username']
-            password = request.POST['password']
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)
@@ -200,7 +199,6 @@ def register_event(request, event_id):
             # Process the form and save the registration
             name = form.cleaned_data['name']
             email = form.cleaned_data['email']
-            # Extract other form fields as needed
 
             # Create an Attendee record for the user
             attendee, created = Attendee.objects.get_or_create(user=request.user, event=event)

@@ -3,21 +3,16 @@
     <head>
         <title>sign in page</title>
         <style>
-            .signintext, .theeventhub {
+            h2, h3 {
                 font-family: Arial;
-                font-weight: bold;
-                font-size: 18px;
-                margin-left: 20px;
             }
 
             .theusername {
                 font-family:Arial;
                 font-size: 14px;
-                padding: 12px 40px;
+                padding: 12px 5px;
                 display: block;
                 margin-bottom: 20px;
-                padding-left: 5px;
-                padding-right: 5px;
                 width: 235px;
                 border-radius: 5px;
                 border: 1px solid #ccc;
@@ -57,6 +52,10 @@
                 opacity: 0.8;
             }
 
+            p {
+                font-family: Arial;
+                font-size: 14px;
+            }
             .everything {
                 display: flex;
                 flex-direction: column;
@@ -96,7 +95,7 @@
 
             .passwordShow {
                 display:flex;
-                position: relative;           
+                position: relative;      
             }
 
             .themessage {
@@ -115,19 +114,19 @@
                     {% endfor %}
                 </div>
             {% endif %}
-            <p class="theeventhub">Event Hub</p>
-            <p class="signintext">Sign In</p>
+            <h2>Event Hub</h2>
+            <h3>Sign In</h3>
             
             <form class="theform" method="post">
                 {% csrf_token %}
-                <input type="username" class="theusername" name="username" placeholder="Email or phone number" required>
+                <input type="username" class="theusername" name="username" placeholder="Email" required>
                 <div class="passwordShow">
                     <input type="password" class="thepassword js-password" name="password" placeholder="Password">
                     <button onclick="togglePassword();" class="theshow js-showbutton">Show</button>
                 </div>
                 <a href="{% url 'password_reset' %}" class="forgottext">Forgot your password?</a>
                 <button type="submit" class="signinbutton">Sign In</button>
-                <p class="notsigned">Don't have an account?</p>
+                <p>Don't have an account?</p>
                 <a href="{% url 'eventHub-signup' %}" class="signupbutton">Sign Up</a>
             </form>
         </div>        

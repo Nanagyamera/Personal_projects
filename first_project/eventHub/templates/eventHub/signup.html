@@ -8,7 +8,7 @@
                 font-family: Arial;  
             }
 
-            .theconfirmation {
+            p {
                 font-family: Arial;
                 font-size: 14px;
                 display: inline-block;
@@ -98,17 +98,10 @@
                 box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
             }
 
-            .theform {
-                align-items: center;
-                text-align: center;
-                justify-content: center;
-            }
-
         </style>
     </head>
     <body>
         <div class="all">
-            <!-- Messages Block -->
             {% if messages %}
                 <div class="messages">
                     <ul class="messages">
@@ -118,31 +111,23 @@
                     </ul>
                 </div>
             {% endif %}
-            <!-- End of Messages Block -->
             <h1>Event Hub</h1>
             <h2>Sign Up</h2>
             <div class="confirmationbox">
-                <p class="theconfirmation">Already have an account?</p>
+                <p>Already have an account?</p>
                 <a href="{% url 'eventHub-signin' %}" class="signinbutton">Sign In</a>
             </div>
 
-            <!-- Registration Form -->
             <form class="theform" method="post">
-                {% csrf_token %}
-                
-                <!-- Username Field -->
+                {% csrf_token %}                
                 <input class="theusername" placeholder="Username" name="username" required>
-
-                <!-- Email Field -->
                 <input type="email" name="email" placeholder="Email or phone number" class="theEmail" required>
 
-                <!-- Password Field -->
                 <div class="theplaceholder">
                     <input type="password" name="password1" placeholder="Password" class="thepassword js-password" required>
                     <button type="button" onclick="checkpass();" class="showbutton js-showbutton">Show</button>
                 </div>
 
-                <!-- Password Confirmation Field -->
                 <div class="theplaceholder1">
                     <input type="password" name="password2" placeholder="Confirm Password" class="thepassword js-password1" required>
                     <button type="button" onclick="checkpass1();" class="showbutton js-showbutton1">Show</button>
