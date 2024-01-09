@@ -25,9 +25,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['jams-site1.up.railway.app', '127.0.0.1', '172.20.10.2']
+ALLOWED_HOSTS = ['jams-site1.up.railway.app', '127.0.0.1']
 
 CSRF_TRUSTED_ORIGINS = ['https://jams-site1.up.railway.app']
 
