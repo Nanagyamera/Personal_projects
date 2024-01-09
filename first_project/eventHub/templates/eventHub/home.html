@@ -8,11 +8,12 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <style>
             .thetext {
-                font-family: 'Bahnschrift Condensed';
+                font-family: 'Bahnschrift Condensed', sans-serif;
                 font-size: 25px;
                 font-weight: bold;
                 margin-right: auto;
                 margin-left: 15px;
+                color: #444;
             }
 
             .search-form {
@@ -26,6 +27,15 @@
                 border-radius: 50px;
                 border: 1px solid #ccc;
                 flex: 1;
+            }
+
+            .thesearch {
+                flex: 1;
+                border: none;
+                padding: 10px;
+                border-radius: 50px 0 0 50px;
+                outline: none;
+                width: 0px;       
             }
             
             .search-button {
@@ -47,11 +57,10 @@
             .navbar a {
                 color: black;
                 margin-right: 20px;
-                font-family: Arial;
                 cursor: pointer;
                 background-color: transparent;
                 border: none;
-                font-family: 'Bahnschrift Condensed';
+                font-family: 'Bahnschrift Condensed', sans-serif;
                 font-size: 20px;
                 text-decoration: none;
             }
@@ -77,7 +86,7 @@
             @media (max-width: 500px) {
                 .thetext {
                     font-size: 18px;
-                    margin-left: 8px;
+                    margin-left: 6px;
                 }
                 .search-container {
                     width: 150px;
@@ -86,11 +95,11 @@
                 .navbar {
                     display: none;
                     position: absolute;
-                    top: 60px;
+                    top: 70px;
                     left: 0;
                     width: 100%;
                     backdrop-filter: blur(10px);
-                    background-color: rgba(255, 255, 255, 0.5);
+                    background-color: rgba(255, 255, 255, 0.9);
                     text-align: center;
                 }
                 .navbar a {
@@ -129,7 +138,7 @@
                 .navbar {
                     display: none;
                     position: absolute;
-                    top: 60px;
+                    top: 70px;
                     left: 0;
                     width: 100%;
                     backdrop-filter: blur(10px);
@@ -166,7 +175,7 @@
                 .navbar {
                     display: none;
                     position: absolute;
-                    top: 60px;
+                    top: 75px;
                     left: 0;
                     width: 100%;
                     backdrop-filter: blur(10px);
@@ -231,16 +240,18 @@
             
             .thewelcome {
                 text-align: center;
-                font-family: 'Bahnschrift Condensed';
+                font-family: 'Bahnschrift Condensed', sans-serif;
+                color: #444;
             }
 
             h2 {
-                font-family: Bahnschrift Condensed;
+                font-family: 'Bahnschrift Condensed', sans-serif;
                 margin-left: 15px;
+                color: #444;
             }
 
             .firstevent {
-                font-family: 'Bahnschrift Condensed';
+                font-family: 'Bahnschrift Condensed', sans-serif;
                 margin-left: 5px;
                 display: grid;
                 grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Adjust minmax and width as needed */
@@ -270,12 +281,12 @@
                 margin-left: 6px;
             }
 
-            .thetitle {
+            h3 a {
                 text-decoration: none;
-                color: black;
+                color: #444;
             }
             
-            .thetitle:hover {
+            h3 a:hover {
                 color: #2196F3;
             }
 
@@ -309,15 +320,6 @@
             .thepagination {
                 position: absolute;
                 right: 10px;
-            }           
-            
-            .thesearch {
-                flex: 1;
-                border: none;
-                padding: 10px;
-                border-radius: 50px 0 0 50px;
-                outline: none;
-                width: 0px;       
             }
             
         </style>
@@ -358,7 +360,7 @@
                                 <a class="theauthor">{{ event1.author }}</a>
                                 <a class="thedate">{{ event1.date }}</a>
                             </div>
-                            <h3><a class="thetitle" href="{% url 'event-detail' event1.pk %}">{{ event1.title }}</a></h3>
+                            <h3><a href="{% url 'event-detail' event1.pk %}">{{ event1.title }}</a></h3>
                             <p>Location: {{ event1.location }}</p>
                             <p>Description: {{ event1.description }}</p>
                         </div>

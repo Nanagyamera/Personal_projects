@@ -1,23 +1,26 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Event Registration</title>
         <style>
             h1 {
-                font-family: 'Bahnschrift Condensed';
-            }
-            .thetext {
+                font-family: 'Bahnschrift Condensed', sans-serif;
+                color: #333;
                 text-align: center;
             }
             
             .registration-form {
-                max-width: 400px;
-                margin: 0 auto;
+                max-width: 500px;
+                margin: 20px;
+                padding: 40px;
             }
 
             .registration-form label {
                 display: block;
                 margin-bottom: 10px;
+                font-family: 'Bahnschrift Condensed', sans-serif;
             }
 
             .registration-form input[type="text"],
@@ -36,6 +39,8 @@
                 padding: 10px 20px;
                 border-radius: 5px;
                 cursor: pointer;
+                font-family: 'Bahnschrift Condensed', sans-serif;
+                font-size: 14px;
             }
 
             .registration-confirmation {
@@ -44,28 +49,23 @@
                 color: #fff;
                 padding: 10px;
                 border-radius: 5px;
+                font-family: 'Bahnschrift Condensed', sans-serif;
             }
             .thehome {
-                color: black;
+                color: #333;
                 text-decoration: none;
                 font-size: 16px;
+                font-family: 'Bahnschrift Condensed', sans-serif;
             }
             .thehome:hover {
                 color: #007BFF;
             }
 
-            @media (max-width: 500px) {
-                .registration-form {
-                    margin: 20px;
-                    padding: 20px;
-                    max-width: 300px;
-                }
-            }
         </style>
     </head>
     <body>
         <a class="thehome" href="{% url 'eventHub-home' %}" class="homebutton">Home</a>
-        <h1 class="thetext">Event Registration</h1>
+        <h1>Event Registration</h1>
         <div class="registration-form">
             <form method="post" action="{% url 'register_event' event.id %}">
                 {% csrf_token %}

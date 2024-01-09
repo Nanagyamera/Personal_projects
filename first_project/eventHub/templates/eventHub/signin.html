@@ -1,27 +1,32 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>sign in page</title>
         <style>
             h2, h3 {
-                font-family: Arial;
+                font-family: 'Bahnschrift Condensed', sans-serif;
+                color: #333;
             }
 
-            .theusername {
-                font-family:Arial;
+            input[type="text"],
+            input[type="password"] {
+                font-family: 'Bahnschrift Condensed', sans-serif;
                 font-size: 14px;
-                padding: 12px 5px;
+                padding: 10px;
                 display: block;
                 margin-bottom: 20px;
-                width: 235px;
+                width: 100%;
                 border-radius: 5px;
                 border: 1px solid #ccc;
+                box-sizing: border-box;
             }
 
             .forgottext {
-                font-family: Arial;
+                font-family: 'Bahnschrift Condensed', sans-serif;
                 font-size: 14px;
-                color: black;
+                color: #333;
                 display: block;
                 margin-bottom: 10px;
             }
@@ -31,21 +36,19 @@
             }
 
             .signinbutton, .signupbutton {
-                padding: 12px 100px;
+                padding: 10px;
+                width: 100%;
                 background-color: #2196F3;
-                border-color: #2196F3;
                 border-radius: 5px;
                 cursor: pointer;
                 transition: background-color 0.75s;
-                text-decoration: none;
-                color: black;
-                font-family: Arial;
+                font-family: 'Bahnschrift Condensed', sans-serif;
                 font-size: 14px;
                 border: none;
-            }
-
-            .signupbutton {
-                padding: 12px 98px;
+                display: block;
+                color: #333;
+                text-decoration: none;
+                box-sizing: border-box;
             }
 
             .signinbutton:hover, .signupbutton:hover {
@@ -53,37 +56,21 @@
             }
 
             p {
-                font-family: Arial;
+                font-family: 'Bahnschrift Condensed', sans-serif;
                 font-size: 14px;
             }
             .everything {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                height: 100vh;
                 text-align: center;
                 background-color: #f7f7f7;
-                border-radius: 10px;
-                margin: 30px;
+                margin: 20px;
                 padding: 40px;
                 box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
             }
 
-            .thepassword {
-                font-family:Arial;
-                font-size: 14px;
-                padding: 12px;
-                margin-bottom: 20px;
-                padding-left: 5px;
-                padding-right: 70px;
-                border-radius: 5px;
-                border: 1px solid #ccc;
-            }
             .theshow {
-                padding-top: 16px;
+                padding-top: 13px;
                 color: #2196F3;
-                margin-right: 14px;
+                margin-right: 4px;
                 border: none;
                 background-color: transparent;
                 position: absolute;
@@ -94,13 +81,17 @@
             }
 
             .passwordShow {
-                display:flex;
-                position: relative;      
+                position: relative; 
             }
 
             .themessage {
                 color: red;
-                font-family: 'Bahnschrift Condensed';
+                font-family: 'Bahnschrift Condensed', sans-serif;
+            }
+
+            .theform {
+                max-width: 500px;
+                margin: 0 auto;
             }
             
         </style>
@@ -119,9 +110,9 @@
             
             <form class="theform" method="post">
                 {% csrf_token %}
-                <input type="username" class="theusername" name="username" placeholder="Email" required>
+                <input type="text" name="username" placeholder="Email" required>
                 <div class="passwordShow">
-                    <input type="password" class="thepassword js-password" name="password" placeholder="Password">
+                    <input type="password" class="js-password" name="password" placeholder="Password">
                     <button onclick="togglePassword();" class="theshow js-showbutton">Show</button>
                 </div>
                 <a href="{% url 'password_reset' %}" class="forgottext">Forgot your password?</a>

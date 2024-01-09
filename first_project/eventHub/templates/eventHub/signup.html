@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>sign up page</title>
         <style>
 
             h1, h2 {
-                font-family: Arial;  
+                font-family: 'Bahnschrift Condensed', sans-serif;
+                color: #333;
             }
 
             p {
-                font-family: Arial;
+                font-family: 'Bahnschrift Condensed', sans-serif;
                 font-size: 14px;
                 display: inline-block;
             }
@@ -21,34 +24,33 @@
                 cursor: pointer;
                 text-decoration: none;
                 margin: 12px;
+                font-family: 'Bahnschrift Condensed', sans-serif;
             }
 
             .confirmationbox {
                 display: flex;
+                justify-content: center;
             }
 
-            .theEmail, .theusername {
-                display: block;
-                font-family: Arial;
-                font-size: 14px;
-                padding:10px;
-                margin-bottom: 12px;
-                padding-left: 5px;
-                padding-right: 8px;
-                width: 192px;
-                border-radius: 5px;
-                border: 1px solid #ccc;
+            .theform {
+                margin: 0 auto;
+                max-width: 500px;
             }
 
-            .thepassword {
-                display: inline-block;
-                font-family: Arial;
-                font-size: 14px;
+            input[type="text"],
+            input[type="email"],
+            input[type="password"] {
+                font-family: 'Bahnschrift Condensed', sans-serif;
+                max-width: 500px;
+                width: 100%;
                 padding: 10px;
-                padding-left: 5px;
-                padding-right: 30px;
                 border-radius: 5px;
                 border: 1px solid #ccc;
+                margin-bottom: 12px;
+                font-size: 14px;
+                display: block;
+                box-sizing: border-box;
+                
             }
             
             .showbutton {
@@ -65,12 +67,15 @@
             }
 
             .signupbutton {
-                padding: 10px 80px;
+                padding: 10px;
+                width: 100%;
                 cursor: pointer;
                 background-color: #2196F3;
                 border: none;
                 border-radius: 5px;
                 transition: color 0.75s;
+                font-family: 'Bahnschrift Condensed', sans-serif;
+                font-size: 14px;
             }
 
             .signupbutton:hover {
@@ -80,15 +85,10 @@
             .theplaceholder, .theplaceholder1 {
                 display: block;
                 position: relative;
-                margin-bottom: 12px;
-                align-items: center;     
+                margin-bottom: 12px; 
             }
             
             .all {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
                 text-align: center;
                 margin: 20px;
                 height: 100vh;  
@@ -120,16 +120,16 @@
 
             <form class="theform" method="post">
                 {% csrf_token %}                
-                <input class="theusername" placeholder="Username" name="username" required>
-                <input type="email" name="email" placeholder="Email or phone number" class="theEmail" required>
+                <input type="text"  placeholder="Username" name="username" required>
+                <input type="email" name="email" placeholder="Email" required>
 
                 <div class="theplaceholder">
-                    <input type="password" name="password1" placeholder="Password" class="thepassword js-password" required>
+                    <input type="password" name="password1" placeholder="Password" class="js-password" required>
                     <button type="button" onclick="checkpass();" class="showbutton js-showbutton">Show</button>
                 </div>
 
                 <div class="theplaceholder1">
-                    <input type="password" name="password2" placeholder="Confirm Password" class="thepassword js-password1" required>
+                    <input type="password" name="password2" placeholder="Confirm Password" class="js-password1" required>
                     <button type="button" onclick="checkpass1();" class="showbutton js-showbutton1">Show</button>
                 </div>
                 <button type="submit" class="signupbutton">Sign Up</button>      

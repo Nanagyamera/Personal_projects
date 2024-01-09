@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Profile</title>
     <style>
       p, h2 {
-        font-family: 'Bahnschrift Condensed';
+        font-family: 'Bahnschrift Condensed', sans-serif;
       }
       
       .buttonbox a {
         margin-right: 20px;
-        font-family: Arial;
         cursor: pointer;
         background-color: transparent;
         border: none;
-        font-family: 'Bahnschrift Condensed';
+        font-family: 'Bahnschrift Condensed', sans-serif;
         font-size: 20px;
         text-decoration: none;
-        color: black;
+        color: #333;
       }
       
       .buttonbox a:hover {
@@ -60,13 +61,13 @@
         border: 1px solid #ccc;
         border-radius: 4px;
         box-sizing: border-box;
-        font-family: 'Bahnschrift Condensed';
+        font-family: 'Bahnschrift Condensed', sans-serif;
         font-size: 15px;
       }
 
       label {
         font-weight: bold;
-        font-family: 'Bahnschrift Condensed';
+        font-family: 'Bahnschrift Condensed', sans-serif;
       }
 
       button {
@@ -77,10 +78,12 @@
         margin-top: 10px;
         cursor: pointer;
         transition: background-color, 0.75s;
+        font-size: 14px;
+        font-family: 'Bahnschrift Condensed', sans-serif;
       }
 
       button:hover {
-        opacity: 0.8
+        opacity: 0.8;
       }
 
       .theheader {
@@ -90,12 +93,13 @@
       }
       
       .thetext {
-        font-family: 'Bahnschrift Condensed';
-        font-size: 25px;
+        font-family: 'Bahnschrift Condensed', sans-serif;
+        font-size: 20px;
         font-weight: bold;
         display: inline-block;
-        margin-right: 200px;
-        margin-left: 20px;
+        margin-right: auto;
+        margin-left: 14px;
+        color: #333;
       }
       
       .profile {
@@ -105,7 +109,7 @@
   </head>
   <body>
     <div class="theheader">
-      <p class="thetext">EventHub</p>
+      <p class="thetext">JaMs Event</p>
       <div class="buttonbox">
         <a href="{% url 'eventHub-home' %}">Home</a>
       </div>
