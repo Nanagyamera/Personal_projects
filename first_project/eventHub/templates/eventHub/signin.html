@@ -3,16 +3,21 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap">
         <title>sign in page</title>
         <style>
+            body {
+                font-family: 'Open Sans', sans-serif;
+                background-color: #f7f7f7;
+                margin: 0;
+            }
+
             h2, h3 {
-                font-family: 'Bahnschrift Condensed', sans-serif;
                 color: #333;
             }
 
             input[type="text"],
             input[type="password"] {
-                font-family: 'Bahnschrift Condensed', sans-serif;
                 font-size: 14px;
                 padding: 10px;
                 display: block;
@@ -21,10 +26,10 @@
                 border-radius: 5px;
                 border: 1px solid #ccc;
                 box-sizing: border-box;
+                font-family: 'Open Sans', sans-serif;
             }
 
             .forgottext {
-                font-family: 'Bahnschrift Condensed', sans-serif;
                 font-size: 14px;
                 color: #333;
                 display: block;
@@ -42,7 +47,7 @@
                 border-radius: 5px;
                 cursor: pointer;
                 transition: background-color 0.75s;
-                font-family: 'Bahnschrift Condensed', sans-serif;
+                font-family: 'Open Sans', sans-serif;
                 font-size: 14px;
                 border: none;
                 display: block;
@@ -55,27 +60,19 @@
                 opacity: 0.8;
             }
 
-            p {
-                font-family: 'Bahnschrift Condensed', sans-serif;
-                font-size: 14px;
-            }
             .everything {
                 text-align: center;
-                background-color: #f7f7f7;
                 margin: 20px;
-                padding: 40px;
-                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+                padding: 20px;
             }
 
             .theshow {
-                padding-top: 13px;
                 color: #2196F3;
-                margin-right: 4px;
                 border: none;
                 background-color: transparent;
                 position: absolute;
-                top: 0;
-                right: 0;
+                top: 13px;
+                right: 4px;
                 font-size: 12px;
                 cursor: pointer; 
             }
@@ -86,7 +83,6 @@
 
             .themessage {
                 color: red;
-                font-family: 'Bahnschrift Condensed', sans-serif;
             }
 
             .theform {
@@ -105,15 +101,15 @@
                     {% endfor %}
                 </div>
             {% endif %}
-            <h2>Event Hub</h2>
+            <h2>JaMs Event</h2>
             <h3>Sign In</h3>
             
             <form class="theform" method="post">
                 {% csrf_token %}
-                <input type="text" name="username" placeholder="Email" required>
+                <input type="text" name="username" placeholder="Username" required>
                 <div class="passwordShow">
                     <input type="password" class="js-password" name="password" placeholder="Password">
-                    <button onclick="togglePassword();" class="theshow js-showbutton">Show</button>
+                    <label onclick="togglePassword();" class="theshow js-showbutton">Show</label>
                 </div>
                 <a href="{% url 'password_reset' %}" class="forgottext">Forgot your password?</a>
                 <button type="submit" class="signinbutton">Sign In</button>

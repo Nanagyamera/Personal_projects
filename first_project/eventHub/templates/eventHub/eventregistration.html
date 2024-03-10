@@ -3,33 +3,39 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap">
         <title>Event Registration</title>
         <style>
-            h1 {
-                font-family: 'Bahnschrift Condensed', sans-serif;
+            body {
+                font-family: 'Open Sans', sans-serif;
                 color: #333;
+            }
+
+            h1 {
                 text-align: center;
+                margin-bottom: 0;
             }
             
             .registration-form {
                 max-width: 500px;
-                margin: 20px;
-                padding: 40px;
+                margin: 5px;
+                padding: 30px;
             }
 
             .registration-form label {
                 display: block;
                 margin-bottom: 10px;
-                font-family: 'Bahnschrift Condensed', sans-serif;
+                font-family: 'Open Sans', sans-serif;
             }
 
             .registration-form input[type="text"],
             .registration-form input[type="email"] {
                 width: 100%;
                 padding: 10px;
-                margin-bottom: 20px;
+                margin-bottom: 10px;
                 border: 1px solid #ccc;
                 border-radius: 5px;
+                font-size: 16px;
             }
 
             .registration-form button {
@@ -39,7 +45,7 @@
                 padding: 10px 20px;
                 border-radius: 5px;
                 cursor: pointer;
-                font-family: 'Bahnschrift Condensed', sans-serif;
+                font-family: 'Open Sans', sans-serif;
                 font-size: 14px;
             }
 
@@ -49,13 +55,13 @@
                 color: #fff;
                 padding: 10px;
                 border-radius: 5px;
-                font-family: 'Bahnschrift Condensed', sans-serif;
+                font-family: 'Open Sans', sans-serif;
             }
             .thehome {
                 color: #333;
                 text-decoration: none;
                 font-size: 16px;
-                font-family: 'Bahnschrift Condensed', sans-serif;
+                margin-left: 5px;
             }
             .thehome:hover {
                 color: #007BFF;
@@ -64,7 +70,7 @@
         </style>
     </head>
     <body>
-        <a class="thehome" href="{% url 'eventHub-home' %}" class="homebutton">Home</a>
+        <a class="thehome" href="{% url 'eventHub-home' %}">Home</a>
         <h1>Event Registration</h1>
         <div class="registration-form">
             <form method="post" action="{% url 'register_event' event.id %}">
