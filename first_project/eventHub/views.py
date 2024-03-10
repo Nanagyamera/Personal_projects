@@ -41,14 +41,17 @@ def contact(request):
         form = ContactForm(request.POST)
         if form.is_valid():
             name = form.cleaned_data['name']
-            email = form.cleaned_data['email']
             message = form.cleaned_data['message']
-            #Process and send the email
             subject = 'Contact Form Submission'
-            message = form.cleaned_data['message']
             from_email = form.cleaned_data['email']
             recipient_list = ['nanagyamera3@gmail.com']
-            send_mail(subject, message, from_email, recipient_list)
+            #Process and send the email
+            send_mail(
+                subject, 
+                f"Message from {name} <{from_email}>\n\n"
+                f"{message}",
+                None, recipient_list
+            )
             return redirect('success-page')
     else:
         form = ContactForm()
@@ -84,14 +87,8 @@ def signUp(request):
         form = SignUpForm(request.POST)
         if form.is_valid():
             user = form.save()
-            username = form.cleaned_data.get('username')
-            password = form.cleaned_data.get('password1')
-            user = authenticate(username=username, password=password)
-            if user is not None:
-                login(request, user)
-                return redirect('eventHub-home')
-            else:
-                messages.error(request, 'Incorrect Username or Password')
+            login(request, user)
+            return redirect('eventHub-home')
         else:
             for field, errors in form.errors.items():
                 for error in errors:
